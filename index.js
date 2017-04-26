@@ -55,6 +55,14 @@ exports.config = function (options, cwd) {
         ])
     }
 
+    if(baseConfig.resolve.alias) {
+        baseConfig.resolve.alias.vue = 'vue/dist/vue';
+    } else {
+        baseConfig.resolve.alias = {
+            vue: 'vue/dist/vue'
+        };
+    }
+
     baseConfig.devtool = '#eval-source-map'
     if (this.env === 'prd') {
         baseConfig.plugins = baseConfig.plugins.concat([
