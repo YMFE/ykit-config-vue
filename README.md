@@ -27,6 +27,10 @@ module.exports = {
 };
 ```
 
+## 示例
+
+查看：https://github.com/roscoe054/ykit-starter-vue
+
 ## babel-polyfill
 
 babel-polyfill 默认是没有引入的，需要根据项目需求手动引入。
