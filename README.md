@@ -6,10 +6,6 @@
 - 支持 ykit server --hot
 - 生产环境代码压缩
 
-## Demo
-
-http://gitlab.corp.qunar.com/yuhao.ju/ykit-seed-vue
-
 ## 安装
 
 在项目中执行：
