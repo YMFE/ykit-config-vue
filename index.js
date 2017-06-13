@@ -1,5 +1,7 @@
 'use strict';
 
+var extend = require('extend');
+
 exports.config = function (options, cwd) {
     var baseConfig = this.config;
     var vueQuery = 'babel-loader?presets[]=es2015,presets[]=es2017,presets[]=stage-0,presets[]=stage-1,presets[]=stage-2';
@@ -25,10 +27,14 @@ exports.config = function (options, cwd) {
                 exclude: /node_modules/
             }
         ])
+
+        var vueLoaders = extend(true, {
+            css: options.ExtractTextPlugin.extract("css"),
+            js: vueQuery
+        }, options.loaders)
+
         baseConfig.vue = {
-            loaders: {
-                js: vueQuery
-            }
+            loaders: vueLoaders
         }
     } else {
         baseConfig.module.loaders = baseConfig.module.loaders.concat([

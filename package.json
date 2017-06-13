@@ -1,6 +1,6 @@
 {
   "name": "ykit-config-vue",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "ykit 编译 Vue 插件",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,7 @@
     "babel-preset-stage-0": "^6.22.0",
     "babel-preset-stage-1": "^6.22.0",
     "babel-preset-stage-2": "^6.22.0",
+    "extend": "^3.0.1",
     "vue": "^2.2.1",
     "vue-loader": "9.9.5",
     "vue-template-compiler": "^2.2.1"
