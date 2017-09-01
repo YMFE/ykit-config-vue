@@ -1,17 +1,20 @@
 'use strict';
 
-var extend = require('extend');
-
 exports.config = function (options, cwd) {
     var baseConfig = this.config;
-    var vueQuery = 'babel-loader?presets[]=es2015,presets[]=es2017,presets[]=stage-0,presets[]=stage-1,presets[]=stage-2';
+    var vueQuery = 'babel-loader?presets[]=es2015,presets[]=es2017,presets[]=stage-0';
     var babelPresets = [
         'es2015',
         'es2017',
-        'stage-0',
-        'stage-1',
-        'stage-2',
+        'stage-0'
     ];
+
+    var vueLoaders = {
+        js: vueQuery,
+        scss: this.env === 'local'
+            ? 'vue-style-loader!css-loader!sass-loader'
+            : options.ExtractTextPlugin.extract('css-loader!sass-loader')
+    }
 
     if(!this.webpack.version || this.webpack.version < 2) {
         baseConfig.module.loaders = baseConfig.module.loaders.concat([
@@ -27,12 +30,6 @@ exports.config = function (options, cwd) {
                 exclude: /node_modules/
             }
         ])
-
-        var vueLoaders = extend(true, {
-            css: options.ExtractTextPlugin.extract("css"),
-            js: vueQuery
-        }, options.loaders)
-
         baseConfig.vue = {
             loaders: vueLoaders
         }
@@ -43,9 +40,7 @@ exports.config = function (options, cwd) {
                 use: [{
                     loader: require.resolve('vue-loader'),
                     options: {
-                        loaders: {
-                            js: vueQuery
-                        }
+                        loaders: vueLoaders
                     }
                 }]
             }, {
@@ -61,15 +56,6 @@ exports.config = function (options, cwd) {
         ])
     }
 
-    if(baseConfig.resolve.alias) {
-        baseConfig.resolve.alias.vue = 'vue/dist/vue';
-    } else {
-        baseConfig.resolve.alias = {
-            vue: 'vue/dist/vue'
-        };
-    }
-
-    baseConfig.devtool = '#eval-source-map'
     if (this.env === 'prd') {
         baseConfig.plugins = baseConfig.plugins.concat([
             new this.webpack.DefinePlugin({
