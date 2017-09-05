@@ -3,12 +3,19 @@
 ## Features
 
 - 编译 ES6+, Vue 代码（不需单独引入 es6 插件）
-- 支持 ykit server --hot
-- 生产环境代码压缩
+- 支持 SASS/SCSS
 
-## 安装
+## Usage
 
-在项目中执行：
+如果是新项目，在一个空的目录下执行：
+
+```shell
+$ ykit init vue
+```
+
+会在当前目录下生成一个初始工程。
+
+如果是已有项目，在项目中执行：
 
 ```
 $ npm install ykit-config-vue --save
@@ -22,10 +29,6 @@ module.exports = {
     // ...
 };
 ```
-
-## 示例
-
-查看：https://github.com/roscoe054/ykit-starter-vue
 
 ## babel-polyfill
 
@@ -47,42 +50,6 @@ import 'babel-polyfill';
 babel-polyfill 会增大 js 体积（压缩后 80k 左右），请根据项目需求选择是否引入。
 </b>
 
-## 插件配置详情（仅供参考）
+## 示例
 
-```javascript
-baseConfig.module.loaders = baseConfig.module.loaders.concat([
-    {
-        test: /\.vue$/,
-        loader: 'vue-loader'
-    }, {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        query: {
-            presets: [
-                'es2015',
-                'es2017',
-                'stage-0',
-                'stage-1',
-                'stage-2',
-            ]
-        },
-        exclude: /node_modules/
-    }
-])
-baseConfig.vue = {
-    loaders: {
-        js: "babel-loader?presets[]=es2015,presets[]=es2017,presets[]=stage-0,presets[]=stage-1,presets[]=stage-2"
-    }
-}
-baseConfig.devtool = '#eval-source-map'
-if (this.env === 'prd') {
-    baseConfig.plugins = baseConfig.plugins.concat([
-        new this.webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: '"production"'
-            }
-        }),
-        new this.webpack.optimize.OccurrenceOrderPlugin()
-    ])
-}
-```
+查看：https://github.com/roscoe054/ykit-starter-vue
