@@ -66,4 +66,9 @@ exports.config = function (options, cwd) {
             new this.webpack.optimize.OccurrenceOrderPlugin()
         ])
     }
+
+    this.commands.push({
+        name: 'setup',
+        module: require('./commands/setup.js')
+    });
 };
