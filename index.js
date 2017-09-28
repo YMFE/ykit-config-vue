@@ -1,13 +1,12 @@
 'use strict';
 
+var es6Config = require('ykit-config-es6');
+
 exports.config = function (options, cwd) {
     var baseConfig = this.config;
-    var vueQuery = 'babel-loader?presets[]=es2015,presets[]=es2017,presets[]=stage-0';
-    var babelPresets = [
-        'es2015',
-        'es2017',
-        'stage-0'
-    ];
+    var vueQuery = 'babel-loader?presets[]=env';
+
+    es6Config.config.call(this, options, cwd);
 
     var vueLoaders = {
         js: vueQuery,
@@ -21,13 +20,6 @@ exports.config = function (options, cwd) {
             {
                 test: /\.vue$/,
                 loader: require.resolve('vue-loader')
-            }, {
-                test: /\.js$/,
-                loader: require.resolve('babel-loader'),
-                query: {
-                    presets: babelPresets
-                },
-                exclude: /node_modules/
             }
         ])
         baseConfig.vue = {
@@ -41,15 +33,6 @@ exports.config = function (options, cwd) {
                     loader: require.resolve('vue-loader'),
                     options: {
                         loaders: vueLoaders
-                    }
-                }]
-            }, {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: [{
-                    loader: require.resolve('babel-loader'),
-                    query: {
-                        presets:babelPresets
                     }
                 }]
             }
