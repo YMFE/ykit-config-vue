@@ -21,6 +21,7 @@ exports.run = function(options) {
         copy('/src/');
         copy('/index.html');
         copy('/ykit.js');
+        copy('/.babelrc');
         copy('/.gitignore');
 
         fs.removeSync(tmpRepo);
