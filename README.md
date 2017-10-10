@@ -30,9 +30,34 @@ module.exports = {
 };
 ```
 
-## babel-polyfill
+注意：由于 vue-loader 配置的特殊性，还需要在项目中添加 .babelrc，否则配置的插件不会生效。
+你也可以安装和配置更多的插件，下面只是参考配置：
 
-babel-polyfill 默认是没有引入的，需要根据项目需求手动引入。
+```JSON
+{
+    "presets": [
+        ["env", {
+            "modules": "commonjs",
+            "targets": {
+                "browsers": [
+                    "> 1%",
+                    "last 3 versions",
+                    "ios 8",
+                    "android 4.2",
+                    "ie 9"
+                ]
+            },
+            "useBuiltIns": "usage"
+        }]
+    ],
+    "plugins": [
+        "transform-decorators-legacy",
+        "transform-class-properties",
+        "transform-object-rest-spread",
+        "transform-object-assign"
+    ]
+}
+```
 
 ### 功能
 
