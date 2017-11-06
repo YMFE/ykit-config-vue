@@ -39,7 +39,7 @@ exports.config = function (options, cwd) {
         ])
     }
 
-    if (this.env === 'prd') {
+    if (this.env === 'prd' || this.env === 'beta') {
         baseConfig.plugins = baseConfig.plugins.concat([
             new this.webpack.DefinePlugin({
                 'process.env': {
@@ -48,6 +48,14 @@ exports.config = function (options, cwd) {
             }),
             new this.webpack.optimize.OccurrenceOrderPlugin()
         ])
+    }
+
+    if(baseConfig.resolve.alias) {
+        baseConfig.resolve.alias.vue = 'vue/dist/vue';
+    } else {
+        baseConfig.resolve.alias = {
+            vue: 'vue/dist/vue'
+        };
     }
 
     this.commands.push({
