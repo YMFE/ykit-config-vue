@@ -4,7 +4,7 @@ var es6Config = require('ykit-config-es6');
 
 exports.config = function (options, cwd) {
     var baseConfig = this.config;
-    var vueQuery = 'babel-loader?presets[]=env';
+    var vueQuery = 'babel-loader?presets[]=env&plugins[]=transform-object-rest-spread';
 
     es6Config.config.call(this, options, cwd);
 
