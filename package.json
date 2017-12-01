@@ -1,6 +1,6 @@
 {
   "name": "ykit-config-vue",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "ykit 编译 Vue 插件",
   "main": "index.js",
   "scripts": {
