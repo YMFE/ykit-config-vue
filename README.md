@@ -1,5 +1,7 @@
 # ykit-config-vue
 
+注意：该组件只适用于 ykit@2，如果使用 ykit@1 以下版本请查看该[文档](https://github.com/YMFE/ykit-config-vue/tree/ykit-v1) 。
+
 ## Features
 
 - 编译 ES6+, Vue 代码（不需单独引入 es6 插件）
@@ -28,35 +30,6 @@ module.exports = {
     plugins: ['vue']
     // ...
 };
-```
-
-注意：由于 vue-loader 配置的特殊性，还需要在项目中添加 .babelrc，否则配置的插件不会生效。
-你也可以安装和配置更多的插件，下面只是参考配置：
-
-```JSON
-{
-    "presets": [
-        ["env", {
-            "modules": "commonjs",
-            "targets": {
-                "browsers": [
-                    "> 1%",
-                    "last 3 versions",
-                    "ios 8",
-                    "android 4.2",
-                    "ie 9"
-                ]
-            },
-            "useBuiltIns": "usage"
-        }]
-    ],
-    "plugins": [
-        "transform-decorators-legacy",
-        "transform-class-properties",
-        "transform-object-rest-spread",
-        "transform-object-assign"
-    ]
-}
 ```
 
 ## 示例
