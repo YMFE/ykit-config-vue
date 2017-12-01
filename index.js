@@ -3,16 +3,23 @@
 var es6Config = require('ykit-config-es6');
 
 exports.config = function (options, cwd) {
-    var baseConfig = this.config;
-    var vueQuery = 'babel-loader?presets[]=env&plugins[]=transform-object-rest-spread';
+    var babelQuery = es6Config.config.call(this, options, cwd);
 
-    es6Config.config.call(this, options, cwd);
+    var isWebpack2 = this.webpack.version && this.webpack.version >= 2;
+    var baseConfig = this.config;
 
     var vueLoaders = {
-        js: vueQuery,
-        scss: this.env === 'local'
-            ? 'vue-style-loader!css-loader!sass-loader'
-            : options.ExtractTextPlugin.extract('css-loader!sass-loader')
+        js: {
+           loader: 'babel-loader',
+           options: {
+               presets: [
+                   'es2015',
+                   'stage-0'
+               ],
+               plugins: babelQuery.plugins
+           }
+        },
+        scss: 'vue-style-loader!css-loader!fast-sass-loader-china'
     }
 
     if(!this.webpack.version || this.webpack.version < 2) {
@@ -48,14 +55,6 @@ exports.config = function (options, cwd) {
             }),
             new this.webpack.optimize.OccurrenceOrderPlugin()
         ])
-    }
-
-    if(baseConfig.resolve.alias) {
-        baseConfig.resolve.alias.vue = 'vue/dist/vue';
-    } else {
-        baseConfig.resolve.alias = {
-            vue: 'vue/dist/vue'
-        };
     }
 
     this.commands.push({
