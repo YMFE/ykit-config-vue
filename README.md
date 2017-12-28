@@ -30,7 +30,9 @@ module.exports = {
 };
 ```
 
-注意：由于 vue-loader 配置的特殊性，还需要在项目中添加 .babelrc，否则配置的插件不会生效。
+## 添加 .babelrc
+
+注意：由于 vue-loader 配置的特殊性，还需要在项目中添加 .babelrc，否则配置的 babel 插件不会生效。
 你也可以安装和配置更多的插件，下面只是参考配置：
 
 ```JSON
@@ -57,6 +59,23 @@ module.exports = {
         "transform-object-assign"
     ]
 }
+```
+
+## 配置项
+
+### 提取样式为单独的 css 文件
+
+```javascript
+module.exports = {
+    plugins: [
+        {
+            name: 'vue',
+            options: {
+                extractStyle: true // 默认是 false 不提取，如果为 true 则会在引入 scss 的当前文件下生成 css
+            }
+        }
+    ]
+};
 ```
 
 ## 示例
