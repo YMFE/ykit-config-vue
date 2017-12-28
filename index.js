@@ -10,9 +10,9 @@ exports.config = function (options, cwd) {
 
     var vueLoaders = {
         js: vueQuery,
-        scss: this.env === 'local'
-            ? 'vue-style-loader!css-loader!sass-loader'
-            : options.ExtractTextPlugin.extract('css-loader!sass-loader')
+        scss: options.extractStyle
+            ? options.ExtractTextPlugin.extract('css-loader!sass-loader')
+            : 'vue-style-loader!css-loader!sass-loader'
     }
 
     if(!this.webpack.version || this.webpack.version < 2) {
