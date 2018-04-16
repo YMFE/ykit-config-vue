@@ -50,6 +50,10 @@ exports.config = function (options, cwd) {
     }
 
     if (this.env === 'prd' || this.env === 'beta') {
+        // DefinePlugin中的变量不会对vue-loader等loader们生效。
+        // LoaderOptionPlugin 官方可能在未来移除改插件。
+        process.env.NODE_ENV = 'production';
+
         baseConfig.plugins = baseConfig.plugins.concat([
             new this.webpack.DefinePlugin({
                 'process.env': {
