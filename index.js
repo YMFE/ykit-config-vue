@@ -40,6 +40,11 @@ exports.config = function (options, cwd) {
     }
 
     if (this.env === 'prd' || this.env === 'beta') {
+        // 参考webpack-simple的vue示例build代码，需要设置这个node环境变量
+        // DefinePlugin 对loader无效，仅对代码编译有效果
+        // LoaderOptionsPlugin 只是做webpack版本迁移使用，不推荐
+        process.env.NODE_ENV = "production";
+
         baseConfig.plugins = baseConfig.plugins.concat([
             new this.webpack.DefinePlugin({
                 'process.env': {
