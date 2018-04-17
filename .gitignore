@@ -34,3 +34,6 @@ Thumbs.db
 # *.tar.gz
 
 yarn.lock
+
+# vscode history plugin
+.history
