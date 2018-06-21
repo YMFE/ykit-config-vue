@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.corp.qunar.com:yuhao.ju/ykit-config-vue.git"
+    "url": "git@github.com:YMFE/ykit-config-vue.git"
   },
   "author": "",
   "license": "ISC",
