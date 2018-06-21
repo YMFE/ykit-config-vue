@@ -11,11 +11,11 @@ exports.config = function (options, cwd) {
     var vueLoaders = {
         js: vueQuery,
         scss: options.extractStyle
-            ? options.ExtractTextPlugin.extract('css-loader!sass-loader')
-            : 'vue-style-loader!css-loader!sass-loader'
+            ? options.ExtractTextPlugin.extract('css-loader!postcss-loader!sass-loader')
+            : 'vue-style-loader!css-loader!postcss-loader!sass-loader'
     }
 
-    vueLoaders = options.modifyQuery ? options.modifyQuery(vueLoaders) : vueLoaders;
+    vueLoaders = options.modifyVueQuery ? options.modifyVueQuery(vueLoaders) : vueLoaders;
 
     if(!this.webpack.version || this.webpack.version < 2) {
         baseConfig.module.loaders = baseConfig.module.loaders.concat([
